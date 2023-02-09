@@ -1,0 +1,62 @@
+plugins {
+    id 'io.github.karlatemp.publication-sign' version '1.3.40'
+    id 'java-base'
+}
+
+
+allprojects {
+
+    group 'com.kasukusakura'
+    version '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def stubJdoc = tasks.register('stubJavadoc', Jar) {
+    archiveBaseName.set 'base-javadoc'
+    archiveClassifier.set 'javadoc'
+}
+
+allprojects {
+    def proj = project
+    afterEvaluate {
+        pluginManager.withPlugin('maven-publish') {
+
+            def sourcesJar = proj.tasks.register('sourcesJar', Jar) {
+                archiveClassifier.set 'sources'
+                from proj.sourceSets.main.allSource
+            }
+
+            publishing {
+                repositories {
+                    if (System.getProperty('user.name') == 'Karlatemp') {
+                        maven {
+                            name = 'TLocal'
+                            url = new File("B:/tlocal").toURI()
+                        }
+                    }
+                }
+
+                publications {
+                    maven(MavenPublication) {
+                        groupId = project.group
+                        artifactId = proj.name
+                        version = project.version
+
+                        from components.java
+
+                        artifact stubJdoc
+                        artifact sourcesJar
+
+                        pom { pom ->
+                            pom.name = project.name
+                            pom.description = project.description
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

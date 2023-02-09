@@ -1,0 +1,11 @@
+rootProject.name = 'brigadier'
+
+def inc1 = { name ->
+    include(':' + name)
+    project(':' + name).projectDir = new File(rootDir, 'src/' + name)
+}
+
+inc1 'brigadier'
+inc1 'brigadier-anywarp'
+inc1 'brigadier-command'
+inc1 'brigadier-resscope'

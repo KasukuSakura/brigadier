@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'java-library'
+
+    id 'io.github.karlatemp.publication-sign'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':brigadier')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    compileOnly 'org.jline:jline:3.22.0'
+    testImplementation 'org.jline:jline:3.22.0'
+    testImplementation 'net.java.dev.jna:jna:5.13.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+}
