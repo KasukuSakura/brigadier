@@ -33,10 +33,3 @@ jobs:
 
       - name: Publish Modules
         run: gradle publish --info
-
-      - name: Publish Gradle Plugins
-        run: >
-          gradle
-          publishPlugins --info
-          -Pgradle.publish.secret=${{ secrets.GRADLE_SECRET }}
-          -Pgradle.publish.key=${{    secrets.GRADLE_KEY    }}
