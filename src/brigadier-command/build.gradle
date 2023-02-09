@@ -6,6 +6,8 @@ plugins {
     id 'maven-publish'
 }
 
+description 'A lightweight framework for hybried commands'
+
 repositories {
     mavenCentral()
 }

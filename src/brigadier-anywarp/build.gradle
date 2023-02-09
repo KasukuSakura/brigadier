@@ -6,6 +6,8 @@ plugins {
     id 'maven-publish'
 }
 
+description 'brigadier-anywarp'
+
 repositories {
     mavenCentral()
 }

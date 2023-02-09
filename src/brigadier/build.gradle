@@ -6,6 +6,8 @@ plugins {
     id 'maven-publish'
 }
 
+description 'The common utils for brigadier'
+
 repositories {
     mavenCentral()
 }

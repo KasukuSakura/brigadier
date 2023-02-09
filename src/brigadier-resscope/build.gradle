@@ -6,6 +6,8 @@ plugins {
     id 'maven-publish'
 }
 
+description 'A lightweight resource scope manager'
+
 repositories {
     mavenCentral()
 }
